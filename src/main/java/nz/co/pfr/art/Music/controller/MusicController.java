@@ -27,4 +27,19 @@ public class MusicController {
 
     }
 
+    @GetMapping("/artists/mostProductiveSQL")
+    public ResponseEntity<List<String>> mostProductiveArtistsSQL(
+            @RequestParam(name = "topn", defaultValue = "1") int topn) {
+        log.info("Getting top {} most productive artists using SQL", topn);
+        List<String> artists = artistService.getMostProductiveArtistsSQL(topn);
+        return ResponseEntity.ok(artists);
+    }
+
+    // @GetMapping("/artists/names")
+    // public ResponseEntity<List<String>> getArtistNames() {
+    // log.info("Fetching all artist names");
+    // List<String> artistNames = artistService.getArtistNames(); // Ensure this
+    // method exists in your ArtistService
+    // return ResponseEntity.ok(artistNames);
+    // }
 }
